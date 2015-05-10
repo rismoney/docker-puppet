@@ -9,6 +9,20 @@ package { 'rsyslog':
 
 $cname = 'puppetdb.inf.ise.com'
 
+file { '/var/log/puppetdb':
+  ensure => directory,
+}
+
+file { '/var/log/puppetdb/puppetdb-daemon.log':
+  ensure => link,
+  target => '/dev/stdout',
+}
+
+file { '/var/log/puppetdb/puppetdb.log':
+  ensure => link,
+  target => '/dev/stdout',
+}
+
 # Merge these java args into the args that live in
 # /etc/sysconfig/puppetdb.
 #
